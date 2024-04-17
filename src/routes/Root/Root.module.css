@@ -1,0 +1,10 @@
+.root {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,55 @@
+.relatedProducts {
+
+}
+
+.header {
+  padding-bottom: 12px;
+  margin-bottom: 44px;
+  border-bottom: 0.3px solid #46A35850;
+}
+
+.title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #46A358;
+}
+
+.productsList {
+  list-style-type: none;
+  display: flex;
+  column-gap: 25px;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  margin-bottom: 60px;
+  padding: 0;
+}
+
+.productsList > li > article {
+  width: 220px;
+}
+
+.sliderButtons > ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.sliderButtons button {
+  box-sizing: border-box;
+  width: 12px;
+  height: 12px;
+  border: 1.3px solid #46A358;
+  border-radius: 100%;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.sliderButtons button.active {
+  background-color: #46A358;
+}

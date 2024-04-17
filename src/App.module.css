@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'Cera Pro';
+  src: local('Cera Pro Regular'), local('CeraPro-Regular'),
+      url('./assets/fonts/CeraPro/CeraPro-Regular.woff') format('woff'),
+      url('./assets/fonts/CeraPro/CeraPro-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Cera Pro';
+  src: local('Cera Pro Medium'), local('CeraPro-Medium'),
+      url('./assets/fonts/CeraPro/CeraPro-Medium.woff') format('woff'),
+      url('./assets/fonts/CeraPro/CeraPro-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Cera Pro';
+  src: local('Cera Pro Bold'), local('CeraPro-Bold'),
+      url('./assets/fonts/CeraPro/CeraPro-Bold.woff') format('woff'),
+      url('./assets/fonts/CeraPro/CeraPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Cera Pro';
+  src: local('Cera Pro Black'), local('CeraPro-Black'),
+      url('./assets/fonts/CeraPro/CeraPro-Black.woff') format('woff'),
+      url('./assets/fonts/CeraPro/CeraPro-Black.ttf') format('truetype');
+  font-weight: 900;
+}
+
+.app {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Cera Pro';
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.shop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.saleBanner {
+  width: 310px;
+}
+
+.saleBanner img {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.productView {
+  /* display: flex;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 575px 575px;
+  justify-content: space-between;
+}

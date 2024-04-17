@@ -1,0 +1,93 @@
+.blog {
+  margin-bottom: 100px;
+}
+
+.heading {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.heading h3 {
+  margin: 0;
+  margin-bottom: 15px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #3D3D3D
+}
+
+.heading p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #727272;
+}
+
+.posts {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 40px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  width: 268px;
+}
+
+.post img {
+  width: 268px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.post .info {
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #46A358;
+}
+
+.post h4 {
+  width: 200px;
+  margin: 0;
+  margin-bottom: 4px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  color:#3D3D3D;
+}
+
+.post p {
+  width: 242px;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #727272;
+}
+
+.post a {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: none;
+  color: #3D3D3D;
+}
+
+.post a:hover {
+  color: #46A358;
+}
+
+.post a:hover svg path {
+  fill: #46A358
+}
