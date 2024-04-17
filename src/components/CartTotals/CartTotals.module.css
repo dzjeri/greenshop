@@ -1,0 +1,184 @@
+.cartTotals {
+  width: 332px;
+}
+
+.header {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 0.3px solid #46A35850;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+.couponForm {
+  margin-bottom: 30px;
+}
+
+.couponForm .couponLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+.couponField {
+  display: flex;
+}
+
+.couponForm .couponInput {
+  font-family: 'Cera Pro';
+  flex-grow: 1;
+  padding: 0 3px;
+  border: 1px solid #46A358;
+  border-right: none;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
+}
+
+.couponForm .couponInput::placeholder {
+  color: #A5A5A5;
+}
+
+.couponForm .applyButton {
+  box-sizing: border-box;
+  width: 101px;
+  height: 38px;
+  border: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background-color: #46A358;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #fff;
+}
+
+.totalInfo {
+  margin-bottom: 29px;
+}
+
+.totalInfoRow {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+.totalInfoRow:nth-child(1) {
+  margin-bottom: 15px;
+}
+
+.totalInfoRow:nth-child(2) {
+  margin-bottom: 21px;
+}
+
+.totalInfoRow:nth-child(3) {
+  margin-bottom: 8px;
+}
+
+.totalInfoRow b {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.shippingInfo {
+  display: flex;
+  flex-direction: column;
+  max-height: 16px;
+  overflow: hidden;
+  transition: max-height 150ms linear;
+}
+
+.shippingInfo.open {
+  max-height: 75px;
+}
+
+.shippingInfo .showButton {
+  width: fit-content;
+  align-self: end;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #46A358;
+  cursor: pointer;
+}
+
+.shippingInfo .shippingText {
+  margin: 0;
+  margin-top: 11px;
+  font-size: 13px;
+}
+
+.totalSumRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+.totalSumRow .greenColored {
+  font-size: 18px;
+  color: #46A358;
+}
+
+.cartButtons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.checkoutButton {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 16px;
+  background-color: #46A358;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.shoppingButton {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border: 2px solid #46A358;
+  border-radius: 3px;
+  background-color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  text-decoration: none;
+  color: #46A358;
+  cursor: pointer;
+}
