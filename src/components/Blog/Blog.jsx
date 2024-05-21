@@ -1,5 +1,5 @@
 import classes from './BlogPosts.module.css';
-import BlogPost from './BlogPost';
+import { BlogPost } from './BlogPost';
 
 const Blog = ({ posts }) => {
   return (
@@ -15,4 +15,4 @@ const Blog = ({ posts }) => {
   )
 }
 
-export default Blog
+export { Blog }

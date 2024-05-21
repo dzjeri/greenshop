@@ -1,8 +1,7 @@
-import axios from 'axios'
-import { Outlet } from "react-router-dom"
-import Header from "../../components/Header/Header"
-import Footer from "../../components/Footer/Footer"
-import classes from './Root.module.css'
+import { Outlet } from "react-router-dom";
+import { Header } from "../../components/Header/Header";
+import { Footer } from "../../components/Footer/Footer";
+import classes from "./Root.module.css";
 
 const Root = () => {
   return (
@@ -13,7 +12,7 @@ const Root = () => {
         <Footer />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Root
+export { Root };

@@ -1,56 +1,65 @@
-import axios from 'axios'
-import { useState } from 'react'
-import { useLoaderData } from "react-router-dom"
-import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
-import ShoppingCart from "../../components/ShoppingCart/ShoppingCart"
-import CartTotals from "../../components/CartTotals/CartTotals"
-import products from '../../data/products.json'
-import classes from './Cart.module.css'
+import axios from "axios";
+import { useContext, useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import { Breadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
+import { ShoppingCart } from "../../components/ShoppingCart/ShoppingCart";
+import { CartTotals } from "../../components/CartTotals/CartTotals";
+import { RelatedProducts } from "../../components/RelatedProducts/RelatedProducts";
+import classes from "./Cart.module.css";
+import { CartContext } from "../../contexts/CartContext";
 
-const breadcrumbsLinks = [
-  {
-    href: '/',
-    text: 'Home'
-  },
-  {
-    href: '/shop',
-    text: 'Shop'
-  },
-  {
-    href: null,
-    text: 'Shopping Cart'
-  }
-]
+// TODO: Наверное, тут не нужен лоадер
+// Товары из стейта, который из локалстореджа
 
 const loader = async () => {
-  // const productsRequest = await axios.get('https://gist.githubusercontent.com/Korgehah/f8dc7a61bb82eb51428427bcdd666857/raw/84f401829838200ebf08e3794869d4c3a817600a/productCards.json')
-  // return { products: productsRequest.data };
+  const productsRequest = await axios.get("http://localhost:3001/products");
+
+  // TODO: Убрать мап для айди, сделать в другом месте
+  // мб в функции для фетчинга
+  const products = productsRequest.data.map((p) => ({
+    ...p,
+    id: Number(p.id),
+  }));
+
   return { products };
 };
 
 const Cart = () => {
-  // const { products } = useLoaderData();
-  const [products, setProducts] = useState(JSON.parse(localStorage.getItem('greenshopCart')));
-  const updateCart = () => {
-    const products = JSON.parse(localStorage.getItem('greenshopCart'));
-    setProducts(products);
-  }
+  const { products: allProducts } = useLoaderData();
+  const { cart } = useContext(CartContext);
+
+  const crumbs = [
+    {
+      href: "/shop",
+      text: "Shop",
+    },
+    {
+      href: null,
+      text: "Shopping Cart",
+    },
+  ];
 
   return (
     <div className={classes.cart}>
       <div className={classes.breadcrumbs}>
-        <Breadcrumbs links={breadcrumbsLinks} />
+        <Breadcrumbs crumbs={crumbs} />
       </div>
-      {products.length > 0
-        ? (<div className={classes.cartWrapper}>
-            <ShoppingCart products={products} updateCart={updateCart} />
-            <CartTotals products={products} />
-          </div>)
-        : <div className={classes.emptyBlock}>The cart is empty</div>
-      }
+      <div className={classes.cartBlock}>
+        {cart.length > 0 ? (
+          <div className={classes.cartInfo}>
+            <ShoppingCart cart={cart} />
+            <CartTotals cart={cart} />
+          </div>
+        ) : (
+          <div className={classes.emptyBlock}>The cart is empty</div>
+        )}
+      </div>
+      <RelatedProducts
+        title={"You may be interested in"}
+        products={allProducts.slice(0, 15)}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Cart
-export { loader }
+export { Cart, loader };

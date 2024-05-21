@@ -79,7 +79,7 @@
   box-sizing: border-box;
   width: 140px;
   height: 40px;
-  border: none;
+  border: 1px solid #46A358;
   border-radius: 6px;
   background-color: #46A358;
   font-size: 14px;
@@ -87,4 +87,19 @@
   line-height: 20px;
   color: #FFFFFF;
   cursor: pointer;
+  transition: background-color 150ms ease-in-out,
+    color 150ms ease-in-out;
+}
+
+.text button path {
+  transition: stroke 150ms ease-in-out;
+}
+
+.text button:hover {
+  background-color: rgba(70, 163, 80, 0.1);
+  color: #46A358;
+}
+
+.text button:hover path {
+  stroke: #46A358;
 }

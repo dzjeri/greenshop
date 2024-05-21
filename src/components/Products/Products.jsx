@@ -1,5 +1,5 @@
 import classes from './Products.module.css';
-import Product from './Product';
+import { Product } from './Product';
 
 const Products = ({ products }) => {
   return (
@@ -9,4 +9,4 @@ const Products = ({ products }) => {
   )
 }
 
-export default Products
+export { Products }

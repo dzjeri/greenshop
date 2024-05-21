@@ -1,30 +1,33 @@
-import { Link, NavLink } from 'react-router-dom';
-import classes from './Header.module.css';
-import Logo from '../icons/Logo';
-import Search from '../icons/Search';
-import CartWithCircle from '../icons/CartWithCircle';
-import Login from '../icons/Login';
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import classes from "./Header.module.css";
+import { Logo, Search, CartWithCircle, Login, Cart } from "../../icons";
+import { CartContext } from "../../contexts/CartContext";
 
 const headerNavLinks = [
   {
-    text: 'Home',
-    href: '/'
+    text: "Home",
+    href: "/",
   },
   {
-    text: 'Shop',
-    href: '/shop'
+    text: "Shop",
+    href: "/shop",
   },
   {
-    text: 'Plant Care',
-    href: '/plant-care'
+    text: "Plant Care",
+    href: "/plant-care",
   },
   {
-    text: 'Blogs',
-    href: '/blogs'
-  }
+    text: "Blogs",
+    href: "/blogs",
+  },
 ];
 
 const Header = () => {
+  const { cart } = useContext(CartContext);
+  const productsQuantity = cart.length;
+  console.log("in header ", cart);
+
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
@@ -37,18 +40,34 @@ const Header = () => {
         <ul>
           {headerNavLinks.map((link, i) => (
             <li key={i}>
-              <NavLink className={({ isActive }) => isActive ? classes.activeLink : ''} to={link.href}>{link.text}</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? classes.activeLink : ""
+                }
+                to={link.href}
+              >
+                {link.text}
+              </NavLink>
             </li>
           ))}
         </ul>
       </div>
 
       <div className={classes.userBlock}>
-        <Link to="">
+        <Link to="" className={classes.searchLink}>
           <Search />
         </Link>
-        <Link to="/shop/cart">
-          <CartWithCircle />
+        <Link to="/shop/cart" className={classes.cartLink}>
+          {productsQuantity > 0 ? (
+            <>
+              <span className={classes.productsQuantity}>
+                {productsQuantity}
+              </span>
+              <CartWithCircle />
+            </>
+          ) : (
+            <Cart />
+          )}
         </Link>
         <button className={classes.loginButton}>
           <Login />
@@ -56,7 +75,7 @@ const Header = () => {
         </button>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export { Header };

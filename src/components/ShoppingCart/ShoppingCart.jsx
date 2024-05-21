@@ -1,7 +1,7 @@
-import ProductRow from './ProductRow';
-import classes from './ShoppingCart.module.css';
+import { ProductRow } from "./ProductRow";
+import classes from "./ShoppingCart.module.css";
 
-const ShoppingCart = ({ products, updateCart }) => {
+const ShoppingCart = ({ cart }) => {
   return (
     <div className={classes.shoppingCart}>
       <div className={classes.header}>
@@ -11,14 +11,14 @@ const ShoppingCart = ({ products, updateCart }) => {
         <b>Total</b>
       </div>
       <ul className={classes.products}>
-        {products.map(p => (
+        {cart.map((p) => (
           <li key={p.id}>
-            <ProductRow {...p} updateCart={updateCart} />
+            <ProductRow {...p} />
           </li>
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default ShoppingCart
+export { ShoppingCart };

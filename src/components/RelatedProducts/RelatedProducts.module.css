@@ -5,7 +5,7 @@
 .header {
   padding-bottom: 12px;
   margin-bottom: 44px;
-  border-bottom: 0.3px solid #46A35850;
+  border-bottom: 0.3px solid rgba(70, 163, 88, 0.50);
 }
 
 .title {
@@ -16,15 +16,36 @@
   color: #46A358;
 }
 
+.productContainer {
+  width: 1200px;
+  min-height: 350px;
+  overflow: hidden;
+  position: relative;
+}
+
 .productsList {
+  position: absolute;
+  transition: 600ms ease-in-out;
+
   list-style-type: none;
   display: flex;
-  column-gap: 25px;
-  width: 100%;
+  /* column-gap: 25px; */
+  width: fit-content;
+  /* width: 100%; */
+  min-height: 290px;
   overflow: hidden;
   margin: 0;
   margin-bottom: 60px;
   padding: 0;
+}
+
+.productsList > li {
+  /* position: absolute;
+  transition: left 600ms ease-out; */
+}
+
+.productsList > li:not(:nth-child(5n)) {
+  margin-right: 25px;
 }
 
 .productsList > li > article {
@@ -50,6 +71,12 @@
   cursor: pointer;
 }
 
+.sliderButtons button:hover {
+  background-color: rgba(70, 163, 88, 0.15);
+}
+
 .sliderButtons button.active {
   background-color: #46A358;
+  cursor: default;
+  pointer-events: none;
 }

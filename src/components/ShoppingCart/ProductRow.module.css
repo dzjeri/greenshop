@@ -14,11 +14,19 @@
   text-decoration: none;
 }
 
-.productPhoto {
+.productPhotoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
   grid-row-start: 1;
   grid-row-end: 3;
+}
+
+.productPhoto {
   width: 70px;
-  height: 70px; 
+  height: 80px; 
 }
 
 .productTitle {
@@ -120,4 +128,8 @@
   background: none;
   border: none;
   cursor: pointer;
+}
+
+.removeButton button:hover path {
+  stroke: #46A358;
 }

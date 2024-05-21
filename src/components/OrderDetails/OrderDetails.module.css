@@ -130,6 +130,10 @@
   text-decoration: none;
 }
 
+.orderTotalInfo .couponLink a:hover {
+  text-decoration: underline;
+}
+
 .orderTotalInfo .totalInfoRow {
   display: flex;
   justify-content: space-between;
@@ -276,7 +280,7 @@
   box-sizing: border-box;
   width: 321px;
   height: 40px;
-  border: none;
+  border: 2px solid #46A358;
   border-radius: 3px;
   background-color: #46A358;
   font-size: 15px;
@@ -284,4 +288,11 @@
   line-height: 16px;
   color: #FFFFFF;
   cursor: pointer;
+  transition: background-color 150ms ease-in-out,
+    color 150ms ease-in-out;
+}
+
+.orderButton button:hover {
+  background-color: rgba(70, 163, 80, 0.1);
+  color: #46A358;
 }

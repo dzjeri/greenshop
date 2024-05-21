@@ -30,7 +30,7 @@
 
 .productTypes button::after {
   position: absolute;
-  bottom: 0;
+  bottom: -7px;
   left: 0;
   content: "";
   width: 100%;
@@ -38,27 +38,35 @@
   opacity: 0;
   transform: translateY(25px);
   background-color: #46A358;
+  transition: all 300ms ease-in-out;
 }
 
 .productTypes button:hover::after {
   opacity: 1;
   transform: translateY(0);
-  transition: all 300ms ease-in-out;
 }
 
-button.activeProductType {
-  font-weight: 700;
+button.active {
+  /* font-weight: 700; */
   color: #46A358;
 }
 
-button.activeProductType:after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  content: "";
-  width: 100%;
-  height: 2px;
+button.active::after {
   opacity: 1;
   transform: translateY(0);
-  background-color: #46A358;
+}
+
+.sortingType select {
+  padding-left: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border: none;
+  outline: none;
+  background-color: buttonface;
+  font-size: 15px;
+}
+
+.sortingType select:hover {
+  outline: 1px solid #46A358;
+  border-radius: 5px;
 }

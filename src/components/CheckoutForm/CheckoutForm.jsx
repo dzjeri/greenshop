@@ -1,5 +1,5 @@
 import classes from './CheckoutForm.module.css'
-import Field from './Field'
+import { Field } from './Field'
 
 const CheckoutForm = () => {
   return (
@@ -44,4 +44,4 @@ const CheckoutForm = () => {
   )
 }
 
-export default CheckoutForm
+export { CheckoutForm }

@@ -1,5 +1,5 @@
 import classes from './Promo.module.css'
-import ArrowRight from '../icons/ArrowRight';
+import { ArrowRight } from '../../icons/';
 
 import blushingBromeliadPhoto from '../../assets/images/blushing-bromeliad2.png';
 import africanVioletPhoto from '../../assets/images/african-violet.png';
@@ -49,4 +49,4 @@ const Promo = () => {
   )
 }
 
-export default Promo
+export { Promo }

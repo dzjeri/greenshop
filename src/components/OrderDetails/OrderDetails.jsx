@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import classes from './OrderDetails.module.css'
-import ProductCard from './ProductCard'
+import { ProductCard } from './ProductCard'
+import formatting from '../../utils/formatting'
 import paymentOptions from '../../assets/images/payment-options.png'
 
-const OrderDetails = ({ products }) => {
+const OrderDetails = ({ products, openModal }) => {
   const [shippingInfoOpen, setShippingInfoOpen] = useState(false);
   const subtotal = products
     .map(p => p.fullPrice * p.quantity)
@@ -37,15 +38,15 @@ const OrderDetails = ({ products }) => {
         </p>
         <div className={classes.totalInfoRow}>
           <span>Subtotal</span>
-          <b>{`$${subtotal}.00`}</b>
+          <b>{formatting.formatPrice(subtotal)}</b>
         </div>
         <div className={classes.totalInfoRow}>
           <span>Coupon Discount</span>
-          <span>(-) 00.00</span>
+          <span>{'(-) ' + formatting.formatPrice(discount)}</span>
         </div>
         <div className={classes.totalInfoRow}>
           <span>Shipping</span>
-          <b>$16.00</b>
+          <b>{formatting.formatPrice(shipping)}</b>
         </div>
         <div className={shippingInfoOpen ? `${classes.shippingInfo} ${classes.open}` : classes.shippingInfo}>
           <button onClick={handleShippingInfoClick} className={classes.showButton} type='button'>View shipping charge</button>
@@ -53,7 +54,7 @@ const OrderDetails = ({ products }) => {
         </div>
         <div className={classes.totalRow}>
           <b>Total</b>
-          <span className={classes.greenColored}>{`$${total}.00`}</span>
+          <span className={classes.greenColored}>{formatting.formatPrice(total)}</span>
         </div>
       </div>
       <div className={classes.paymentMethod}>
@@ -72,10 +73,10 @@ const OrderDetails = ({ products }) => {
         </label>
       </div>
       <div className={classes.orderButton}>
-        <button>Place Order</button>
+        <button onClick={openModal}>Place Order</button>
       </div>
     </div>
   )
 }
 
-export default OrderDetails
+export { OrderDetails }

@@ -1,18 +1,16 @@
 import { Link } from 'react-router-dom'
-import ArrowRightSharp from '../icons/ArrowRightSharp';
+import { ArrowRightSharp } from '../../icons/';
+import formatting from '../../utils/formatting'
 import classes from './BlogPosts.module.css';
 
-const shortenDescription = (description) => {
-  const slice = description.slice(0, 60).trim();
-  return slice < description ? slice + '...' : description;
-}
+// const getRandomInt = (max) => {
+//   return Math.floor(Math.random() * max);
+// }
 
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * max);
-}
+const getReadingTime = (text) => Math.floor(text.length / 8 / 60);
 
 const BlogPost = ({ src, date, title, description, slug }) => {
-  const readingTime = getRandomInt(9) + 1;
+  const readingTime = getReadingTime(description);
 
   return (
     <article className={classes.post}>
@@ -21,7 +19,7 @@ const BlogPost = ({ src, date, title, description, slug }) => {
         <time>{date}</time> | <span>Read in {readingTime} {readingTime === 1 ? 'minute' : 'minutes'}</span>
       </span>
       <h4>{title}</h4>
-      <p>{shortenDescription(description)}</p>
+      <p>{formatting.shortenText(description)}</p>
       <Link to={`/blogs/${slug}`}>
         Read More
         <ArrowRightSharp />
@@ -30,4 +28,4 @@ const BlogPost = ({ src, date, title, description, slug }) => {
   )
 }
 
-export default BlogPost
+export { BlogPost }

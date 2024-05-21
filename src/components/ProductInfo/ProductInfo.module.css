@@ -208,7 +208,7 @@
   width: 130px;
   height: 40px;
   margin-right: 10px;
-  border: none;
+  border: 1px solid #46A358;
   border-radius: 6px;
   background-color: #46A358;
   font-size: 14px;
@@ -217,6 +217,13 @@
   text-transform: uppercase;
   color: #FFFFFF;
   cursor: pointer;
+  transition: background-color 150ms ease-in-out,
+    color 150ms ease-in-out;
+}
+
+.buyRow .buyNowButton:hover {
+  background-color: rgba(70, 163, 80, 0.1);
+  color: #46A358;
 }
 
 .buyRow .addToCartButton {
@@ -227,7 +234,7 @@
   border: 1px solid #46A358;
   border-radius: 6px;
   background-color: #FFFFFF;
-  transition: background-color 200ms ease-in;
+  transition: background-color 150ms ease-in-out;
   font-size: 14px;
   font-weight: 700;
   line-height: 20px;
@@ -304,6 +311,15 @@
   padding: 0;
 }
 
-.shareLinks ul path {
+.shareLink {
+  opacity: 0.6;
+  transition: opacity 150ms ease-in-out;
+}
+
+.shareLink:hover {
+  opacity: 1;
+}
+
+.shareLink path {
   fill: #3D3D3D;
 }

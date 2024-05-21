@@ -9,7 +9,7 @@
 }
 
 .aboutBlock {
-  position: relative;;
+  position: relative;
   width: 205px;
   margin-right: 55px;
 }
@@ -26,6 +26,10 @@
   width: 1px;
   height: 187px;
   background-color: rgba(70, 163, 88, 0.1);
+}
+
+.aboutBlock .imageBlock {
+  margin-bottom: 15px;
 }
 
 .aboutBlock b {
@@ -70,7 +74,7 @@
   width: 265px;
   height: 40px;
   padding: 0 7px;
-  border: none;
+  border: 1px solid transparent;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.06);
@@ -78,6 +82,11 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 16px;
+}
+
+.joinForm input:focus-visible {
+  border: 1px solid #46A358;
+  outline: none;
 }
 
 .joinForm input::placeholder {
@@ -88,7 +97,7 @@
   box-sizing: border-box;
   width: 85px;
   height: 40px;
-  border: none;
+  border: 1px solid #46A358;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   background-color: #46A358;
@@ -97,6 +106,15 @@
   line-height: 16px;
   color: #FFFFFF;
   cursor: pointer;
+  transition: background-color 150ms ease-in-out,
+    color 150ms ease-in-out;
+}
+
+.joinForm button:hover,
+.joinForm button:focus-visible {
+  background-color: rgba(70, 163, 80, 0.1);
+  outline: none;
+  color: #46A358;
 }
 
 .joinForm p {
@@ -219,6 +237,24 @@
   height: 30px;
   border: 1px solid rgba(70, 163, 88, .2);
   border-radius: 4px;
+  transition: border-color 150ms ease-in-out;
+}
+
+.socialLinks a > svg {
+  opacity: 0.6;
+  transition: opacity 150ms ease-in-out;
+}
+
+.socialLinks a:hover,
+.socialLinks a:focus-visible {
+  border-color: rgba(70, 163, 88, 1);
+  outline: none;
+}
+
+.socialLinks a:hover > svg,
+.socialLinks a:focus-visible > svg {
+  opacity: 1;
+
 }
 
 .stackedBlock {

@@ -1,16 +1,26 @@
 import { useState } from 'react';
+import { Search } from '../../icons/';
+import cn from 'classnames';
 import classes from './ProductPhotos.module.css';
-import Search from '../icons/Search';
 
 const ProductPhotos = ({ gallery }) => {
   const [chosenPhoto, setChosenPhoto] = useState(0);
-  if (!gallery) gallery = []; // Если картинки не грузятся (при старте кидает ошибку)
+
+  const handlePhotoClick = (e) => {
+    const photoId = Number(e.currentTarget.dataset.photoId);
+    setChosenPhoto(photoId);
+  };
 
   return (
     <div className={classes.productPhotos}>
       <div className={classes.side}>
-        {gallery.map((imgSrc, i) => (
-          <div key={i} href="" onClick={() => setChosenPhoto(i)} >
+        {gallery?.map((imgSrc, i) => (
+          <div 
+            key={i}
+            onClick={handlePhotoClick}
+            data-photo-id={i}
+            className={cn(classes.photoContainer, { [classes.active]: chosenPhoto === i })}
+          >
             <img src={imgSrc} alt={`Photo ${i + 1}`} />
           </div>
         ))}
@@ -19,10 +29,16 @@ const ProductPhotos = ({ gallery }) => {
         <div className={classes.searchIcon}>
           <Search />
         </div>
-        <img src={gallery[chosenPhoto]} alt="Main Photo" />
+        <div className={cn(classes.mainPhotoContainer, {
+          [classes.mint]: chosenPhoto === 1,
+          [classes.blue]: chosenPhoto === 2,
+          [classes.pink]: chosenPhoto === 3
+        })}>
+          <img src={gallery[chosenPhoto]} alt="Main Photo" />
+        </div>
       </div>
     </div>
   )
 }
 
-export default ProductPhotos
+export { ProductPhotos }

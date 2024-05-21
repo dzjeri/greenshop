@@ -1,73 +1,52 @@
-import { useState } from 'react';
-import ReactSlider from 'react-slider';
-import classes from './Filter.module.css';
+import { useState } from "react";
+import ReactSlider from "react-slider";
+import cn from "classnames";
+import classes from "./Filter.module.css";
 
-const categoriesFilters = [
-  {
-    name: 'House Plants',
-    amount: 33
-  },
-  {
-    name: 'Potter Plants',
-    amount: 12
-  },
-  {
-    name: 'Seeds',
-    amount: 65
-  },
-  {
-    name: 'Small Plants',
-    amount: 39
-  },
-  {
-    name: 'Big Plants',
-    amount: 23
-  },
-  {
-    name: 'Succulents',
-    amount: 17
-  },
-  {
-    name: 'Trerrariums',
-    amount: 19
-  },
-  {
-    name: 'Gardening',
-    amount: 13
-  },
-  {
-    name: 'Accessories',
-    amount: 18
-  }
+const CATEGORIES = [
+  "House Plants",
+  "Potter Plants",
+  "Seeds",
+  "Small Plants",
+  "Big Plants",
+  "Succulents",
+  "Trerrariums",
+  "Gardening",
+  "Accessories",
 ];
 
-const sizeFilters = [
-  {
-    name: 'Small',
-    amount: 119
-  },
-  {
-    name: 'Medium',
-    amount: 86
-  },
-  {
-    name: 'Large',
-    amount: 78
-  }
-];
+const SIZES = ["Small", "Medium", "Large"];
 
-const Filter = ({ products }) => {
-  const minSliderValue = 0;
-  const maxSliderValue = 1200;
-  const [minPrice, setMinPrice] = useState(minSliderValue);
-  const [maxPrice, setMaxPrice] = useState(maxSliderValue);
+const countByCategory = (products, categoryId) =>
+  products.filter((p) => p.categoriesIds.includes(categoryId)).length;
+const countBySize = (products, size) =>
+  products.filter((p) => p.size === size.toLowerCase()).length;
 
-  const handleSliderChange = ([min, max]) => {
-    setMinPrice(min);
-    setMaxPrice(max);
-  };
+const Filter = ({
+  products,
+  onSliderChange,
+  onCategoryClick,
+  onSizeClick,
+  minPrice,
+  maxPrice,
+  categoryFilter,
+  sizeFilter,
+  minSliderValue,
+  maxSliderValue,
+  onPriceFilterClick,
+}) => {
+  const categoriesFilters = CATEGORIES.map((cat, i) => ({
+    name: cat,
+    quantity: countByCategory(products, i + 1),
+  }));
 
-  console.log(products.filter(p => p.categoriesIds.includes(1)))
+  const sizeFilters = SIZES.map((s) => ({
+    name: s,
+    quantity: countBySize(products, s),
+  }));
+
+  // TODO: Считать здесь defaultValue для прайс-рэнджа
+  // Или как там эта хуйня называется
 
   return (
     <div className={classes.filter}>
@@ -76,10 +55,18 @@ const Filter = ({ products }) => {
         <ul>
           {categoriesFilters.map((cat, i) => (
             <li key={i}>
-              <a className={i === 0 ? classes.active : ''} href="">
+              <button
+                className={
+                  categoryFilter === i + 1
+                    ? `${classes.active} ${classes.filterButton}`
+                    : classes.filterButton
+                }
+                data-category-id={i + 1}
+                onClick={onCategoryClick}
+              >
                 <span>{cat.name}</span>
-                <span>{`(${cat.amount})`}</span>
-              </a>
+                <span>{`(${cat.quantity})`}</span>
+              </button>
             </li>
           ))}
         </ul>
@@ -92,39 +79,58 @@ const Filter = ({ products }) => {
             thumbClassName={classes.sliderThumb}
             thumbActiveClassName={classes.sliderThumbActive}
             trackClassName={classes.sliderTrack} // doesn't work
-            ariaValuetext={state => `Thumb value ${state.valueNow}`}
-            ariaLabel={['Lower thumb', 'Upper thumb']}
+            ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+            ariaLabel={["Lower thumb", "Upper thumb"]}
             // set class for styling in module (use :nth-of-type)
             // eslint-disable-next-line react/no-unknown-property
-            renderTrack={(props, state) => <div class={classes.sliderTrack + ' ' +  classes.sliderTrack + '-' + state.index} {...props}></div>}
+            renderTrack={(props, state) => (
+              <div
+                class={cn(
+                  classes.sliderTrack,
+                  `${classes.sliderTrack}-${state.index}`
+                )}
+                {...props}
+              ></div>
+            )}
             renderThumb={(props) => <div {...props}></div>}
             min={minSliderValue}
             max={maxSliderValue}
             defaultValue={[minSliderValue, maxSliderValue]}
             minDistance={0}
-            onChange={handleSliderChange}
+            onChange={onSliderChange}
           />
         </div>
         <div className={classes.price}>
-          Price: <span className={classes.priceValue}>${minPrice} - ${maxPrice}</span>
+          Price:{" "}
+          <span className={classes.priceValue}>
+            ${minPrice} - ${maxPrice}
+          </span>
         </div>
-        <button>Filter</button>
+        <button onClick={onPriceFilterClick}>Filter</button>
       </div>
       <div className={classes.size}>
         <h3>Size</h3>
         <ul>
           {sizeFilters.map((size, i) => (
             <li key={i}>
-              <a href="">
+              <button
+                className={
+                  sizeFilter === size.name.toLowerCase()
+                    ? `${classes.active} ${classes.filterButton}`
+                    : classes.filterButton
+                }
+                data-size={size.name}
+                onClick={onSizeClick}
+              >
                 <span>{size.name}</span>
-                <span>{`(${size.amount})`}</span>
-              </a>
+                <span>{`(${size.quantity})`}</span>
+              </button>
             </li>
           ))}
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Filter
+export { Filter };

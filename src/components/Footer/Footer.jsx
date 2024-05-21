@@ -1,18 +1,74 @@
 import { useState } from 'react';
-import Cactus1 from '../icons/Cactus1';
-import Cactus2 from '../icons/Cactus2';
-import Cactus3 from '../icons/Cactus3';
-import Logo from '../icons/Logo';
-import MapMarker from '../icons/MapMarker';
-import RoundedMail from '../icons/RoundedMail';
-import Phone from '../icons/Phone';
-import FacebookLogo from '../icons/FacebookLogo';
-import InstagramLogo from '../icons/InstagramLogo';
-import TwitterLogo from '../icons/TwitterLogo';
-import LinkedinLogo from '../icons/LinkedinLogo';
-import UnionLogo from '../icons/UnionLogo';
+import { 
+  Cactus1,
+  Cactus2,
+  Cactus3,
+  Logo,
+  MapMarker,
+  RoundedMail,
+  Phone,
+  FacebookLogo,
+  InstagramLogo,
+  TwitterLogo,
+  LinkedinLogo,
+  UnionLogo
+} from '../../icons/';
 import classes from './Footer.module.css';
 import paymentOptions from '../../assets/images/payment-options.png';
+
+const accountLinks = [
+  {
+    text: 'My Account'
+  },
+  {
+    text: 'Our stores'
+  },
+  {
+    text: 'Contact us'
+  },
+  {
+    text: 'Career'
+  },
+  {
+    text: 'Specials'
+  }
+];
+
+const helpLinks = [
+  {
+    text: 'Help Center'
+  },
+  {
+    text: 'How to Buy'
+  },
+  {
+    text: 'Shipping & Delivery'
+  },
+  {
+    text: 'Product Policy'
+  },
+  {
+    text: 'How to Return'
+  }
+];
+
+const categoriesLinks = [
+  {
+    text: 'House Plants'
+  },
+  {
+    text: 'Potter Plants'
+  },
+  {
+    text: 'Seeds'
+  },
+  {
+    text: 'Small Plants'
+  },
+  {
+    text: 'Accessories'
+  }
+];
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -21,17 +77,23 @@ const Footer = () => {
     <footer className={classes.footer}>
       <div className={classes.about}>
         <div className={classes.aboutBlock}>
-          <div><Cactus1 /></div>
+          <div className={classes.imageBlock}>
+            <Cactus1 />
+          </div>
           <b>Garden Care</b>
           <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
         </div>
         <div className={classes.aboutBlock}>
-          <div><Cactus2 /></div>
+          <div className={classes.imageBlock}>
+            <Cactus2 />
+          </div>
           <b>Plant Renovation</b>
           <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
         </div>
         <div className={classes.aboutBlock}>
-          <div><Cactus3 /></div>
+          <div className={classes.imageBlock}>
+            <Cactus3 />
+          </div>
           <b>Watering Garden</b>
           <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
         </div>
@@ -75,31 +137,31 @@ const Footer = () => {
         <div className={classes.accountLinks}>
           <h4>My Account</h4>
           <ul>
-            <li><a href="">My Account</a></li>
-            <li><a href="">Our stores</a></li>
-            <li><a href="">Contact us</a></li>
-            <li><a href="">Career</a></li>
-            <li><a href="">Specials</a></li>
+            {accountLinks.map((link, i) => (
+              <li key={i}>
+                <a href=''>{link.text}</a>
+              </li>
+            ))}
           </ul>
         </div>
         <div className={classes.helpLinks}>
           <h4>Help & Guide</h4>
           <ul>
-            <li><a href="">Help Center</a></li>
-            <li><a href="">How to Buy</a></li>
-            <li><a href="">Shipping & Delivery</a></li>
-            <li><a href="">Product Policy</a></li>
-            <li><a href="">How to Return</a></li>
+            {helpLinks.map((link, i) => (
+              <li key={i}>
+                <a href=''>{link.text}</a>
+              </li>
+            ))}
           </ul>
         </div>
         <div className={classes.categoriesLinks}>
           <h4>Categories</h4>
           <ul>
-            <li><a href="">House Plants</a></li>
-            <li><a href="">Potter Plants</a></li>
-            <li><a href="">Seeds</a></li>
-            <li><a href="">Small Plants</a></li>
-            <li><a href="">Accessories</a></li>
+            {categoriesLinks.map((link, i) => (
+              <li key={i}>
+                <a href=''>{link.text}</a>
+              </li>
+            ))}
           </ul>
         </div>
         <div className={classes.stackedBlock}>
@@ -126,4 +188,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export { Footer }

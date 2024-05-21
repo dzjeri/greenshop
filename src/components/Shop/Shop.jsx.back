@@ -1,0 +1,155 @@
+import { useState, useRef } from "react";
+import classes from "./Shop.module.css";
+import { getMinPrice, getMaxPrice } from "../../utils/helpers";
+import { Filter } from "../Filter/Filter";
+import { Options } from "../Options/Options";
+import { Pagination } from "../Pagination/Pagination";
+import { Products } from "../Products/Products";
+import sorting from "../../utils/sorting";
+import saleBanner from "../../assets/images/sale-banner.png";
+
+const Shop = ({ products }) => {
+  const shopRef = useRef(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
+  const lastItemIndex = itemsPerPage * currentPage;
+  const firstItemIndex = lastItemIndex - itemsPerPage;
+
+  const minSliderValue = getMinPrice(products);
+  const maxSliderValue = getMaxPrice(products);
+  const [minPrice, setMinPrice] = useState(minSliderValue);
+  const [maxPrice, setMaxPrice] = useState(maxSliderValue);
+  const [categoryFilter, setCategoryFilter] = useState(null);
+  const [sizeFilter, setSizeFilter] = useState(null);
+  const [plantsType, setPlantsType] = useState("all");
+  const [sortingType, setSortingType] = useState("default");
+  const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
+  // console.log({
+  //   minPrice, maxPrice, categoryFilter,
+  //   sizeFilter, plantsType, sortingType
+  // });
+
+  const handleSliderChange = ([min, max]) => {
+    setMinPrice(min);
+    setMaxPrice(max);
+  };
+
+  const handleCategoryClick = (e) => {
+    _updatePriceAndPage();
+    // setCurrentPage(1);
+    const clickedCategory = Number(e.currentTarget.dataset.categoryId);
+
+    if (categoryFilter !== clickedCategory) setCategoryFilter(clickedCategory);
+    else setCategoryFilter(null);
+  };
+
+  const handleSizeClick = (e) => {
+    _updatePriceAndPage();
+    // setCurrentPage(1);
+    const clickedSize = e.currentTarget.dataset.size.toLowerCase();
+
+    if (sizeFilter !== clickedSize) setSizeFilter(clickedSize);
+    else setSizeFilter(null);
+  };
+
+  const handlePriceFilterClick = () => {
+    setPriceRange([minPrice, maxPrice]);
+  };
+
+  const handlePlantTypeClick = (e) => {
+    _updatePriceAndPage();
+    setPlantsType(e.currentTarget.dataset.plantsType);
+  };
+
+  const handleSortingTypeChange = (e) => setSortingType(e.target.value);
+
+  let filteredProducts = products;
+  filteredProducts = filteredProducts.filter(
+    (p) => priceRange[0] <= p.fullPrice && p.fullPrice <= priceRange[1]
+  );
+  if (categoryFilter)
+    filteredProducts = filteredProducts.filter((p) =>
+      p.categoriesIds.includes(categoryFilter)
+    );
+  if (sizeFilter)
+    filteredProducts = filteredProducts.filter((p) => p.size === sizeFilter);
+  if (plantsType !== "all")
+    filteredProducts = filteredProducts.filter((p) =>
+      p.tag?.includes(plantsType)
+    );
+
+  // Работает не совсем так, как надо: скачет между 19$ и 39$ при смене
+  // All Plants/New Arrivals/Sale
+  // Пока не смотрел, почему
+  // мб лучше вообще по-другому это все сделать
+  // Типо в Sale 9 продуктов. Но апдейтится после перехода на All
+  // Потом чекну
+  function _updatePriceAndPage() {
+    // Чтобы не было бага, когда открыта 2-ая/(3,4) страница из 1 доступной
+    setCurrentPage(1);
+
+    const maxPrice = getMaxPrice(filteredProducts);
+    const minPrice = getMinPrice(filteredProducts);
+    console.log(filteredProducts);
+    console.log({ minPrice, maxPrice });
+    setMinPrice(minPrice);
+    setMaxPrice(maxPrice);
+  }
+
+  const filteredAndSortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortingType === "default") return sorting.sortDefault(a, b);
+    else if (sortingType === "name") return sorting.sortByName(a, b);
+    else if (sortingType === "price-ascending")
+      return sorting.sortByPriceAsc(a, b);
+    else if (sortingType === "price-descending")
+      return sorting.sortByPriceDesc(a, b);
+  });
+
+  return (
+    <div ref={shopRef} className={classes.shop}>
+      <div className={classes.shopWrapper}>
+        <div className={classes.left}>
+          <Filter
+            products={products}
+            onSliderChange={handleSliderChange}
+            onCategoryClick={handleCategoryClick}
+            onSizeClick={handleSizeClick}
+            minSliderValue={minSliderValue}
+            maxSliderValue={maxSliderValue}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
+            categoryFilter={categoryFilter}
+            sizeFilter={sizeFilter}
+            onPriceFilterClick={handlePriceFilterClick}
+          />
+          <div className={classes.saleBanner}>
+            <img src={saleBanner} alt="Sale Banner" />
+          </div>
+        </div>
+        <div className={classes.right}>
+          <Options
+            plantsType={plantsType}
+            sortingType={sortingType}
+            onPlantTypeClick={handlePlantTypeClick}
+            onSortingTypeChange={handleSortingTypeChange}
+          />
+          <Products
+            products={filteredAndSortedProducts.slice(
+              firstItemIndex,
+              lastItemIndex
+            )}
+          />
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            itemsLength={filteredAndSortedProducts.length}
+            itemsPerPage={itemsPerPage}
+            scrollRef={shopRef}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export { Shop };

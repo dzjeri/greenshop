@@ -27,4 +27,4 @@ const ProductCard = ({ SKU, fullPrice, src, title, quantity, slug }) => {
   )
 }
 
-export default ProductCard
+export { ProductCard }
