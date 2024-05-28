@@ -1,0 +1,19 @@
+.checkout {
+  margin-top: 36px;
+  margin-bottom: 100px;
+}
+
+.breadcrumbs {
+  margin-bottom: 36px;
+}
+
+.checkoutWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.emptyBlock {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}

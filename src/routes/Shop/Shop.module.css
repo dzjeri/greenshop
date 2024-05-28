@@ -1,0 +1,13 @@
+.shop {
+  margin-top: 45px;
+  margin-bottom: 80px;
+}
+
+.shopWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.saleBanner img {
+  width: 310px;
+}

@@ -1,0 +1,42 @@
+.breadcrumbs {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbs a {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  text-decoration: none;
+  color: #3D3D3D;
+}
+
+.breadcrumbs a[href]:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs .lastLink {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+a.rootLink {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+.breadcrumbs li:not(:last-of-type)::after {
+  content: '/';
+  display: inline-block;
+  margin: 0 4px;
+}
+/* 
+.separator {
+  margin: 0 4px;
+} */
