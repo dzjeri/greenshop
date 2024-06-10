@@ -41,25 +41,25 @@ const ProductDescription = ({ description, reviews }) => {
         <div
           className={cn(classes.reviews, { [classes.active]: activeTab === 2 })}
         >
-          {reviews.map((r) => (
-            <div key={r.id} className={classes.review}>
+          {reviews.map((review) => (
+            <div key={review.id} className={classes.review}>
               <div className={classes.reviewHeader}>
-                <b className={classes.reviewAuthor}>{r.author}</b>
+                <b className={classes.reviewAuthor}>{review.author}</b>
                 <div className={classes.reviewRating}>
-                  {marks.map((m) => (
+                  {marks.map((mark) => (
                     <div
-                      key={m}
+                      key={mark}
                       className={cn(classes.reviewStar, {
-                        [classes.filled]: r.mark >= m,
+                        [classes.filled]: review.mark >= mark,
                       })}
                     >
                       <Star />
                     </div>
                   ))}
                 </div>
-                <time className={classes.reviewDate}>{r.date}</time>
+                <time className={classes.reviewDate}>{review.date}</time>
               </div>
-              <p className={classes.reviewComment}>{r.review}</p>
+              <p className={classes.reviewComment}>{review.review}</p>
             </div>
           ))}
         </div>

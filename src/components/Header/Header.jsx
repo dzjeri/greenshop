@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import cn from "classnames";
 import classes from "./Header.module.css";
 import { Logo, Search, CartWithCircle, Login, Cart } from "../../icons";
 import { CartContext } from "../../contexts/CartContext";
@@ -42,7 +43,7 @@ const Header = () => {
             <li key={i}>
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? classes.activeLink : ""
+                  cn({ [classes.activeLink]: isActive })
                 }
                 to={link.href}
               >

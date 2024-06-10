@@ -56,11 +56,9 @@ const Filter = ({
           {categoriesFilters.map((cat, i) => (
             <li key={i}>
               <button
-                className={
-                  categoryFilter === i + 1
-                    ? `${classes.active} ${classes.filterButton}`
-                    : classes.filterButton
-                }
+                className={cn(classes.filterButton, {
+                  [classes.active]: categoryFilter === i + 1,
+                })}
                 data-category-id={i + 1}
                 onClick={onCategoryClick}
               >
@@ -114,11 +112,9 @@ const Filter = ({
           {sizeFilters.map((size, i) => (
             <li key={i}>
               <button
-                className={
-                  sizeFilter === size.name.toLowerCase()
-                    ? `${classes.active} ${classes.filterButton}`
-                    : classes.filterButton
-                }
+                className={cn(classes.filterButton, {
+                  [classes.active]: sizeFilter === size.name.toLowerCase(),
+                })}
                 data-size={size.name}
                 onClick={onSizeClick}
               >

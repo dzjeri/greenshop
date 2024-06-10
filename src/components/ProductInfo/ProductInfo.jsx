@@ -29,6 +29,29 @@ const CATEGORIES = [
 
 const SIZES = ["S", "M", "L", "XL"];
 
+const LINKS = {
+  facebook: {
+    id: 1,
+    href: "https://www.facebook.com/",
+    icon: <FacebookLogo />,
+  },
+  twitter: {
+    id: 2,
+    href: "https://twitter.com/",
+    icon: <TwitterLogo />,
+  },
+  linkedin: {
+    id: 3,
+    href: "https://www.linkedin.com/",
+    icon: <LinkedinLogo />,
+  },
+  mail: {
+    id: 4,
+    href: "mailto:someaddress@somesite.com",
+    icon: <Mail />,
+  },
+};
+
 const shortenDescription = (description) => {
   return description.slice(0, 258) + "...";
 };
@@ -186,26 +209,13 @@ const ProductInfo = ({
       <div className={classes.shareLinks}>
         <b>Share this product:</b>
         <ul>
-          <li>
-            <a className={classes.shareLink} href="">
-              <FacebookLogo />
-            </a>
-          </li>
-          <li>
-            <a className={classes.shareLink} href="">
-              <TwitterLogo />
-            </a>
-          </li>
-          <li>
-            <a className={classes.shareLink} href="">
-              <LinkedinLogo />
-            </a>
-          </li>
-          <li>
-            <a className={classes.shareLink} href="">
-              <Mail />
-            </a>
-          </li>
+          {Object.values(LINKS).map((link) => (
+            <li key={link.id}>
+              <a className={classes.shareLink} href={link.href}>
+                {link.icon}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

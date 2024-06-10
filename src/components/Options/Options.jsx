@@ -1,28 +1,36 @@
-import classes from './Options.module.css';
+import cn from "classnames";
+import classes from "./Options.module.css";
 
 const Options = ({
-  plantsType, sortingType,
-  onPlantTypeClick, onSortingTypeChange
+  plantsType,
+  sortingType,
+  onPlantTypeClick,
+  onSortingTypeChange,
 }) => {
-
   return (
     <div className={classes.options}>
       <div className={classes.productTypes}>
         <button
-          className={plantsType === 'all' ? classes.active : ''}
-          data-plants-type='all'
+          className={cn({ [classes.active]: plantsType === "all" })}
+          data-plants-type="all"
           onClick={onPlantTypeClick}
-        >All Plants</button>
+        >
+          All Plants
+        </button>
         <button
-          className={plantsType === 'new' ? classes.active : ''}
-          data-plants-type='new'
+          className={cn({ [classes.active]: plantsType === "new" })}
+          data-plants-type="new"
           onClick={onPlantTypeClick}
-        >New Arrivals</button>
+        >
+          New Arrivals
+        </button>
         <button
-          className={plantsType === 'sale' ? classes.active : ''}
-          data-plants-type='sale'
+          className={cn({ [classes.active]: plantsType === "sale" })}
+          data-plants-type="sale"
           onClick={onPlantTypeClick}
-        >Sale</button>
+        >
+          Sale
+        </button>
       </div>
       <div className={classes.sortingType}>
         <label>
@@ -36,7 +44,7 @@ const Options = ({
         </label>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { Options }
+export { Options };

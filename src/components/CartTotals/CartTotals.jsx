@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import cn from "classnames";
 import classes from "./CartTotals.module.css";
 import formatting from "../../utils/formatting";
 
@@ -49,11 +50,9 @@ const CartTotals = ({ cart }) => {
           <b>{formatting.formatPrice(shipping)}</b>
         </p>
         <div
-          className={
-            shippingInfoOpen
-              ? `${classes.shippingInfo} ${classes.open}`
-              : classes.shippingInfo
-          }
+          className={cn(classes.shippingInfo, {
+            [classes.open]: shippingInfoOpen,
+          })}
         >
           <button
             onClick={handleShippingInfoClick}

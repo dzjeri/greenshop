@@ -1,6 +1,8 @@
 import classes from "./Slider.module.css";
 import plants from "../../assets/images/plants2.png";
 
+const SLIDER_BUTTONS = [1, 2, 3];
+
 const Slider = ({ shopRef }) => {
   const handleShopClick = () => {
     console.log(shopRef);
@@ -29,15 +31,11 @@ const Slider = ({ shopRef }) => {
       </div>
       <div className={classes.sliderControls}>
         <ul>
-          <li>
-            <button></button>
-          </li>
-          <li>
-            <button></button>
-          </li>
-          <li>
-            <button></button>
-          </li>
+          {SLIDER_BUTTONS.map((number) => (
+            <li key={number}>
+              <button></button>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
