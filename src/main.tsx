@@ -5,18 +5,14 @@ import { router } from "./routing";
 import { CartContext } from "./contexts/CartContext";
 import "./index.css";
 
-// const cart = JSON.parse(localStorage.getItem("greenshopCart"));
-// console.log(cart);
-
 const App = () => {
   const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("greenshopCart"))
+    JSON.parse(localStorage.getItem("greenshopCart") || "[]")
   );
+
   useEffect(() => {
     localStorage.setItem("greenshopCart", JSON.stringify(cart));
   }, [cart]);
-
-  // TODO: Передавать setCart(), чтобы при добавлении товара в корзинку менять стейт
 
   return (
     <React.StrictMode>
@@ -32,4 +28,7 @@ const App = () => {
   );
 };
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+const rootDiv = document.getElementById("root");
+if (!rootDiv) throw new Error("The element #root doesn't exist");
+
+ReactDOM.createRoot(rootDiv).render(<App />);
