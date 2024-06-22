@@ -1,0 +1,318 @@
+.checkoutModal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.checkoutModal {
+  overflow-y: scroll;
+}
+
+.overlay {
+  background-color: #0A0D1225;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  width: 578px;
+  border-bottom: 10px solid #46A358;
+  background: #FFFFFF;
+  z-index: 1000;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  background-color: rgba(70, 163, 88, 0.1);
+}
+
+.header .thankYouIcon {
+  margin-bottom: 15px;
+}
+
+.header .headerText {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #727272;
+}
+
+.header .closeButton {
+  position: absolute;
+  top: 17px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.body {
+}
+
+.orderInfo {
+  display: flex;
+  column-gap: 45px;
+  margin: 0;
+  padding: 15px 41px;
+  border-top: 1px solid rgba(70, 163, 88, 0.4);
+  border-bottom: 1px solid rgba(70, 163, 88, 0.4);
+  list-style-type: none;
+}
+
+.orderInfoColumn {
+  position: relative;
+  display: flex;
+  row-gap: 3px;
+  flex-direction: column;
+}
+
+/* TODO: слишком большое кол-во текста надо обрабатывать как-нибудь по-другому */
+.orderInfo :nth-child(3) b {
+  max-width: 60px;
+  overflow-x: auto;
+}
+
+.orderInfo li {
+  position: relative;
+}
+
+.orderInfo li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 31px;
+  background-color: rgba(70, 163, 88, 0.4);
+}
+
+.orderInfoColumn span {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #727272;
+}
+
+.orderInfoColumn b {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #727272;
+}
+
+.orderDetails {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 41px;
+}
+
+.orderDetails::after {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  content: '';
+  width: 495px;
+  height: 0.3px;
+  background-color: rgba(70, 163, 88, 0.6);
+}
+
+.orderDetails .title {
+  margin-top: 18px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+.orderDetails .orderDetailsHeader {
+  display: grid;
+  grid-template-columns: 240px auto auto;
+  justify-content: space-between;
+  padding-right: 13px;
+  padding-bottom: 11px;
+  margin-bottom: 11px;
+  border-bottom: 0.30px solid rgba(70, 163, 88, 0.6);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+.orderDetails .orderDetailsHeader :last-child {
+  justify-self: end;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.productCard {
+  display: grid;
+  grid-template-columns: 240px auto auto;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 13px;
+  background-color: #FBFBFB;
+}
+
+.product {
+  display: grid;
+  grid-template-columns: 70px auto;
+  grid-template-rows: auto auto;
+  row-gap: 5px;
+  text-decoration: none;
+}
+
+.productPhotoWrapper {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  display: flex;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+}
+
+.productPhoto {
+  width: 70px;
+  height: 80px;
+}
+
+.productTitle {
+  align-self: end;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+.productSKU {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #727272;
+}
+
+.productSKU .grayColored {
+  color: #A5A5A5;
+}
+
+.quantity {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #727272;
+}
+
+.subtotal {
+  justify-self: end;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #46A358;
+}
+
+.orderTotal {
+  display: flex;
+  flex-direction: column;
+  align-self: end;
+  row-gap: 25px;
+  width: 330px;
+  margin-bottom: 18px;
+  padding-top: 20px;
+  padding-right: 13px;
+  padding-bottom: 20px;
+}
+
+.orderTotalRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderTotalRow span {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+.orderTotalRow b {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+
+.orderTotalRow .greenColored {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #46A358;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderStatus {
+  margin: 0;
+  margin-bottom: 50px;
+  padding: 0 40px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #727272;
+  text-align: center;
+}
+
+.trackButton {
+  align-self: center;
+  box-sizing: border-box;
+  width: 162px;
+  height: 45px;
+  margin-bottom: 50px;
+  border: 1px solid #46A358;
+  border-radius: 5px;
+  background-color: #46A358;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out,
+    color 150ms ease-in-out;
+}
+
+.trackButton:hover {
+  background-color: rgba(70, 163, 80, 0.1);
+  color: #46A358;
+}

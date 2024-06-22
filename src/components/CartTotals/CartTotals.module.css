@@ -53,7 +53,7 @@
   box-sizing: border-box;
   width: 101px;
   height: 38px;
-  border: none;
+  border: 1px solid #46A358;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   background-color: #46A358;
@@ -61,6 +61,14 @@
   font-weight: 700;
   line-height: 16px;
   color: #fff;
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out,
+    color 150ms ease-in-out;
+}
+
+.couponForm .applyButton:hover {
+  background-color: rgba(70, 163, 80, 0.1);
+  color: #46A358;
 }
 
 .totalInfo {
@@ -154,7 +162,7 @@
   justify-content: center;
   width: 100%;
   height: 40px;
-  border: none;
+  border: 2px solid #46A358;
   border-radius: 3px;
   font-size: 15px;
   font-weight: 700;
@@ -163,6 +171,13 @@
   text-decoration: none;
   color: #fff;
   cursor: pointer;
+  transition: background-color 150ms ease-in-out,
+    color 150ms ease-in-out;
+}
+
+.checkoutButton:hover {
+  background-color: rgba(70, 163, 80, 0.1);
+  color: #46A358;
 }
 
 .shoppingButton {
@@ -181,4 +196,9 @@
   text-decoration: none;
   color: #46A358;
   cursor: pointer;
+  transition: background-color 150ms ease-in-out;
+}
+
+.shoppingButton:hover {
+  background-color: #46A35810;
 }

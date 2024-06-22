@@ -82,6 +82,11 @@
   line-height: 16px;
   text-decoration: none;
   color: #3D3D3D;
+  transition: color 150ms ease-in-out;
+}
+
+.post a svg path {
+  transition: fill 150ms ease-in-out;
 }
 
 .post a:hover {
